@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-:root{
+:root {
   --Cor-Background: #000000d9;
-  --Background-modal:#1f1f1f;
-  --Cor-Primaria:#805AD5;
-  --Cor-Secundaria:#48BB78;
-  --Cor-Texto:#F7FAFC;
+  --Background-modal: #1f1f1f;
+  --Cor-Primaria: #805ad5;
+  --Cor-Secundaria: #48bb78;
+  --Cor-Texto: #f7fafc;
+  --white: #f5f5f5;
+  --gray: #9b9b9b;
 }
 
-body{
+body {
   background-color: var(--Cor-Background);
   color: var(--Cor-Texto);
   text-align: justify;
   padding: 4rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }

@@ -1,10 +1,18 @@
-/* Header  */
+/* --Header--  */
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.Divider {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--Cor-Texto);
+}
+
+/* --Add Button-- */
 .addToDo {
   width: 2.5rem;
   height: 2.5rem;
@@ -13,10 +21,11 @@ header {
   border-radius: 10%;
   cursor: pointer;
 }
+
 .Background {
   width: 100%;
-  height: 100vh;
-  position: fixed;
+  height: 100%;
+  position: absolute;
   top: 0%;
   left: 0%;
   display: flex;
@@ -24,22 +33,140 @@ header {
   justify-content: center;
   background-color: #2d2d2d45;
 }
+
 .modalToDo {
   display: flex;
-  background-color:var(--Background-modal);
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--Background-modal);
   border-radius: 1%;
   width: 45rem;
-  height: 50rem;
+  height: 30rem;
+  padding: 2.5rem;
 }
 
-.Divider {
-  width: 100%;
-  height: 0.1rem;
-  background-color: var(--Cor-Texto);
-}
 .Container {
   margin-top: 1vh;
   border: 1px solid var(--Cor-Texto);
   border-radius: 1%;
   height: 50%;
+}
+
+.modalToDo form {
+  margin-top: 8vh;
+  width: 90%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modalToDo form {
+  font: 400 1.3rem "Roboto", sans-serif;
+  color: var(--gray);
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+}
+
+.form__field {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid var(--gray);
+  outline: 0;
+  font-size: 1.3rem;
+  color: var(--Cor-Texto);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 600;
+  border-width: 3px;
+}
+
+.modalToDo form textarea {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  border:0;
+  border-bottom: 2px solid var(--gray);
+  background: transparent;
+  color: var(--Cor-Texto);
+  font-size: 1.3rem;
+
+}
+.modalToDo form textarea:focus {
+  padding-bottom: 6px;
+  font-weight: 600;
+  border-width: 3px;
+  outline: none;
+}
+.containerSmall{
+  width: 80%;
+  display: flex;  
+}
+.containerSmall .add {
+  width: 8rem;
+  height: 2.5rem;
+  background-color: white;
+  border: none;
+  border-radius: 2%;
+  cursor: pointer;
+}
+/* --Align items in the right side-- */
+.rightAlign {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: relative;
+}
+
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+  background: var(--white);
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+}
+select:hover,
+select:focus {
+  border-color: var(--gray);
+}
+
+select:disabled {
+  background-color: var(--white);
+  cursor: not-allowed;
 }
