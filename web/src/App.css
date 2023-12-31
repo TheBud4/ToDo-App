@@ -1,0 +1,111 @@
+/* --Header--  */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Divider {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--Cor-Texto);
+}
+/* --Container todos */
+.Container {
+  margin-top: 1rem;
+  border-radius: 1px;
+  height: 50%;
+  width: 100%;
+}
+.toDo{
+  background-color: var(--Cor-Texto);
+  color: var(--Background-modal);
+}
+/* --Add Button-- */
+.addToDo {
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: white;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d2d2d45;
+}
+
+.modalToDo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--Background-modal);
+  border-radius: 1rem;
+  width: 45rem;
+  height: 30rem;
+  padding: 2.5rem;
+}
+
+
+.modalToDo form {
+  margin-top: 1rem;
+  width: 90%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font: 400 1.3rem "Roboto", sans-serif;
+  color: var(--Cor-Texto);
+}
+
+#title{
+  background-color: white;
+  border: none;
+  width: 90%;
+  height: 2rem;
+}
+#description{
+  background-color: white;
+  border: none;
+  width: 90%;
+  min-height:3rem;
+
+}
+.containerSmall{
+  width: 80%;
+  display: flex;  
+  align-items: center;
+}
+.containerSmall .add {
+  width: 8rem;
+  height: 2.5rem;
+  background-color: var(--Cor-Texto);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.containerSmall select {
+  background-color: var(--Cor-Texto);
+  border-radius: 3px;
+  width: 15rem;
+  height: 2.5rem;
+}
+/* --Align items in the right side-- */
+.rightAlign {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: relative;
+}
