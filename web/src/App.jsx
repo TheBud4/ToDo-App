@@ -1,4 +1,3 @@
-import "./App.css";
 import plusIcon from "./assets/plus_icon.svg";
 import xIcon from "./assets/closeIcon.svg";
 import { useState } from "react";
@@ -57,10 +56,10 @@ function App() {
   }
 
   return (
-    <>
+    <div className="font-body">
       <header>
-        <h1>Lista de Afazeres</h1>
-        <button className="addToDo" onClick={openAdd}>
+        <h1 className="text-5xl">Lista de Afazeres</h1>
+        <button className="bg-red-600" onClick={openAdd}>
           <img src={plusIcon} alt="Add" />
         </button>
       </header>
@@ -81,7 +80,7 @@ function App() {
         <div className="Background" id="bg">
           <div className="modalToDo">
             <div className="rightAlign">
-              <button className="addToDo end" onClick={closeAdd}>
+              <button className="bg-red-600" onClick={closeAdd}>
                 <img src={xIcon} alt="fechar" />
               </button>
             </div>
@@ -115,7 +114,7 @@ function App() {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
 
