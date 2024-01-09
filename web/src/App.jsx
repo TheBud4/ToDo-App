@@ -57,17 +57,20 @@ function App() {
 
   return (
     <div className="font-body">
-      <header>
+      <header className="flex justify-between w-11/12">
         <h1 className="text-5xl">Lista de Afazeres</h1>
-        <button className="bg-red-600" onClick={openAdd}>
+        <button
+          className="bg-dark-primaryColor size-9 flex rounded-sm"
+          onClick={openAdd}
+        >
           <img src={plusIcon} alt="Add" />
         </button>
       </header>
-      <div className="Divider"></div>
+      <div className="bg-dark-primaryColor h-px my-6 w-11/12"></div>
       <div className="Container">
         <ul>
           {todos.map((todo, index) => (
-            <li className="toDo"key={index}>
+            <li className="toDo" key={index}>
               <strong>Titulo:</strong> {todo.title} <br />
               <strong>Descricao:</strong> {todo.description} <br />
               <strong>Tag:</strong> {todo.tag}
@@ -77,14 +80,18 @@ function App() {
       </div>
 
       {open ? (
-        <div className="Background" id="bg">
-          <div className="modalToDo">
-            <div className="rightAlign">
-              <button className="bg-red-600" onClick={closeAdd}>
-                <img src={xIcon} alt="fechar" />
-              </button>
-            </div>
-            <form onSubmit={manageToDo}>
+        <div
+          className="size-full bg-dark-backGround fixed inset-0 flex bg-center items-center justify-center"
+          id="bg"
+        >
+          <div className="bg-dark-modalBgColor size-[40rem] flex flex-col px-16 py-8">
+            <button
+              className="bg-dark-primaryColor size-8 rounded-sm ml-[100%]"
+              onClick={closeAdd}
+            >
+              <img src={xIcon} alt="fechar" />
+            </button>
+            <form onSubmit={manageToDo} className="flex size-full flex-col justify-evenly ">
               <h2>Escreva aqui sua tarefa</h2>
               <input
                 type="text"
@@ -107,7 +114,11 @@ function App() {
                   <option value="Lazer">Lazer</option>
                 </select>
                 <div className="rightAlign">
-                  <input type="submit" value="Adicionar" className="add" />
+                  <input
+                    type="submit"
+                    value="Adicionar"
+                    className="bg-dark-primaryColor text-dark-backGround"
+                  />
                 </div>
               </div>
             </form>

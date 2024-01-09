@@ -9,7 +9,7 @@
   --Cor-Secundaria: #48bb78;
   --Cor-Texto: #f7fafc;
   --white: #f5f5f5;
-  --gray: #9b9b9b;
+  --gray: #060606;
 }
 
 body {
@@ -17,5 +17,4 @@ body {
   color: var(--Cor-Texto);
   text-align: justify;
   padding: 4rem;
-  font-family: "Roboto", sans-serif;
 }
