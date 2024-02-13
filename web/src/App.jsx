@@ -66,7 +66,7 @@ function App() {
       <header className="flex justify-between w-11/12">
         <h1 className="text-5xl">Lista de Afazeres</h1>
         <button
-          className="bg-dark-primaryColor size-9 flex rounded-sm"
+          className="bg-dark-primaryColor size-9 flex rounded-sm items-center justify-center"
           onClick={openAdd}
         >
           <img src={plusIcon} alt="Add" />
@@ -90,7 +90,7 @@ function App() {
           className="size-full bg-dark-backGround fixed inset-0 flex bg-center items-center justify-center"
           id="bg"
         >
-          <div className="bg-dark-modalBgColor size-[40rem] flex flex-col px-16 py-8">
+          <div className="bg-dark-modalBgColor size-[30rem] flex flex-col px-16 py-8">
             <button
               className="bg-dark-primaryColor size-8 rounded-sm ml-[100%]"
               onClick={closeAdd}
@@ -137,7 +137,7 @@ function App() {
                   <select
                     id="tag"
                     onChange={handleInputChange}
-                    className="peer h-full w-full rounded-[7px] border border-dark-primaryColor bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-dark-textColor outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-dark-primaryColor empty:!bg-dark-primaryColor focus:border-2 focus:border-dark-primaryColor focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full rounded-[7px] border border-dark-primaryColor bg-dark-modalBgColor px-3 py-2.5 font-sans text-sm font-normal text-dark-textColor outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-dark-primaryColor empty:!bg-dark-primaryColor focus:border-2 focus:border-dark-primaryColor focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 "
                   >
                     <option value="">Selecione Aqui a Tag</option>
                     <option value="Trabalho">Trabalho</option>
