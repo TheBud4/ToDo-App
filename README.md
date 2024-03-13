@@ -11,10 +11,28 @@ Clone o projeto
   git clone https://github.com/TheBud4/ToDo-App.git
 ```
 
-Entre no diretório do projeto
+Entre no diretório do projeto frontend
 
 ```bash
-  cd 
+  cd ToDoApp
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o projeto
+
+```bash
+  npm run dev
+```
+
+Entre no diretório da api
+
+```bash
+  cd server
 ```
 
 Instale as dependências
@@ -26,9 +44,8 @@ Instale as dependências
 Inicie o servidor
 
 ```bash
-  npm run start
+  npm run start:dev
 ```
-
 
 ## Stack utilizada
 
