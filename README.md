@@ -8,13 +8,13 @@ Repositorio em desenvolvimento
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/TheBud4/ToDo-App.git
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd my-project
+  cd 
 ```
 
 Instale as dependências
