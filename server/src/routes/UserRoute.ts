@@ -1,26 +1,26 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-
+import { User } from "./Interfaces";
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // GET /users
 router.get("/", async (req: Request, res: Response) => {
-    try {
-      const users = await prisma.user.findMany({
-        include: {
-          tasks: true,
-        },
-      });
-      res.json(users);
-    } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
-      res.status(500).json({ error: 'Erro ao buscar usuários' });
-    } finally {
-      await prisma.$disconnect();
-    }
-  });  
+  try {
+    const user:User = await prisma.user.findMany({
+      include: {
+        tasks: true,
+      },
+    });
+    res.json(user);
+  } catch (error) {
+    console.error("Erro ao buscar usuários:", error);
+    res.status(500).json({ error: "Erro ao buscar usuários" });
+  } finally {
+    await prisma.$disconnect();
+  }
+});
 
 // GET /users/:id
 router.get("/:id", async (req: Request, res: Response) => {
@@ -37,13 +37,13 @@ router.get("/:id", async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
+      return res.status(404).json({ error: "Usuário não encontrado" });
     }
 
     res.json(user);
   } catch (error) {
-    console.error('Erro ao buscar usuário:', error);
-    res.status(500).json({ error: 'Erro ao buscar usuário' });
+    console.error("Erro ao buscar usuário:", error);
+    res.status(500).json({ error: "Erro ao buscar usuário" });
   } finally {
     await prisma.$disconnect();
   }
@@ -70,7 +70,7 @@ router.post("/login", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Senha incorreta" });
     }
 
-    res.json({ message: "Login bem-sucedido", userid:user.id });
+    res.json({ message: "Login bem-sucedido", userid: user.id });
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     res.status(500).json({ error: "Erro ao fazer login" });

@@ -1,11 +1,12 @@
-import '../styles/global.css'
+import '../styles/global.css';
 
 function App() {
 
-
   return (
-    <div>Hello</div>
-    )
+    <div>
+
+    </div>
+  );
 }
 
-export default App
+export default App;

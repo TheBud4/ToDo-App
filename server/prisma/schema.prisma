@@ -12,8 +12,8 @@ datasource db {
 
 // Modelo de usuário
 model User {
-  id       String      @id @default(uuid())
-  email    String      @unique
+  id       String  @id @default(uuid())
+  email    String  @unique
   name     String?
   password String
   tasks    Task[]
@@ -21,12 +21,12 @@ model User {
 
 // Modelo de tarefa
 model Task {
-  id          String      @id @default(uuid())
+  id          String    @id @default(uuid())
   title       String
   description String?
-  completed   Boolean     @default(false)
+  completed   Boolean   @default(false)
   dueDate     DateTime?
-  createdAt   DateTime    @default(now())
-  userId      String      @unique
-  user        User        @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  userId      String    @unique
+  user        User      @relation(fields: [userId], references: [id])
 }
