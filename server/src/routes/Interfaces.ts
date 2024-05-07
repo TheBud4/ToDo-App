@@ -10,8 +10,8 @@ export interface Task {
 
 export interface User {
   id: string | null;
-  email: string ;
-  name: string | null;
+  email: string;
+  name: string;
   password: string;
-  tasks: Task[];
+  tasks: Task[] | null;
 }

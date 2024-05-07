@@ -1,18 +1,24 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Task } from "./Interfaces";
-import { title } from "process";
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// GET /tasks --Feito
+// GET /tasks
 router.get("/", async (req: Request, res: Response) => {
-  const tasks: Task[] = await prisma.task.findMany();
-  res.json(tasks);
+  try {
+    const tasks: Task[] = await prisma.task.findMany();
+    res.status(200).json(tasks);
+  } catch (err) {
+    res.status(500).json({
+      msg: "Erro ao buscar tarefas",
+      error: err,
+    });
+  }
 });
 
-// GET /tasks/:id --Feito
+// GET /tasks/:id
 router.get("/:id", async (req: Request, res: Response) => {
   const task: Task | { msg: string } = await prisma.task
     .findMany({
@@ -26,7 +32,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   res.json(task);
 });
 
-// POST /tasks  --A fazer
+// POST /tasks
 router.post("/", async (req: Request, res: Response) => {
   try {
     const createdTask: Task = await prisma.task.create({
@@ -50,17 +56,44 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 // PUT /tasks/:id  --A fazer
-router.put("/:id", (req: Request, res: Response) => {
-  // Lógica para atualizar uma tarefa pelo ID
-  const taskId = req.params.id;
-  res.send(`Tarefa ${taskId} atualizada`);
+router.put("/:id", async (req: Request, res: Response) => {
+  try {
+    const taskId: Task = await prisma.task.update({
+      where: {
+        id: req.params.id,
+      },
+      data: {
+        title: req.body.title,
+        description: req.body.description,
+        completed: req.body.completed,
+        dueDate: req.body.dueDate,
+        userId: req.body.userId,
+      },
+    });
+    res.status(200).send(`Tarefa atualizada`);
+  } catch (err) {
+    res.status(404).json({
+      msg: "Tarefa não encontrada",
+      error: err,
+    });
+  }
 });
 
-// DELETE /tasks/:id --A fazer
-router.delete("/:id", (req: Request, res: Response) => {
-  // Lógica para excluir uma tarefa pelo ID
-  const taskId = req.params.id;
-  res.send(`Tarefa ${taskId} excluída`);
+// DELETE /tasks/:id
+router.delete("/:id", async (req: Request, res: Response) => {
+  try {
+    const task: Task = await prisma.task.delete({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.send(`Tarefa excluída com sucesso`);
+  } catch (err) {
+    res.status(404).json({
+      msg: "Tarefa não encontrada",
+      error: err,
+    });
+  }
 });
 
 export default router;

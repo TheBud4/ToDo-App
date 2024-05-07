@@ -2,50 +2,42 @@ import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { User } from "./Interfaces";
+
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // GET /users
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const user:User = await prisma.user.findMany({
+    const users: User[] = await prisma.user.findMany({
       include: {
         tasks: true,
       },
     });
-    res.json(user);
+    res.json(users);
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
     res.status(500).json({ error: "Erro ao buscar usuários" });
-  } finally {
-    await prisma.$disconnect();
   }
 });
 
 // GET /users/:id
 router.get("/:id", async (req: Request, res: Response) => {
-  const userId = req.params.id;
-
   try {
-    const user = await prisma.user.findUnique({
+    const user: User = await prisma.user.findUnique({
       where: {
-        id: userId,
+        id: req.params.id,
       },
       include: {
         tasks: true,
       },
     });
-
     if (!user) {
       return res.status(404).json({ error: "Usuário não encontrado" });
     }
-
     res.json(user);
   } catch (error) {
-    console.error("Erro ao buscar usuário:", error);
     res.status(500).json({ error: "Erro ao buscar usuário" });
-  } finally {
-    await prisma.$disconnect();
   }
 });
 
