@@ -11,7 +11,7 @@ export interface Task {
 export interface User {
   id: string | null;
   email: string;
-  name: string;
+  name: string | null;
   password: string;
   tasks: Task[] | null;
 }

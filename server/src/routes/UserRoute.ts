@@ -16,7 +16,6 @@ router.get("/", async (req: Request, res: Response) => {
     });
     res.json(users);
   } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
     res.status(500).json({ error: "Erro ao buscar usuários" });
   }
 });
@@ -24,7 +23,7 @@ router.get("/", async (req: Request, res: Response) => {
 // GET /users/:id
 router.get("/:id", async (req: Request, res: Response) => {
   try {
-    const user: User = await prisma.user.findUnique({
+    const user: User | null = await prisma.user.findUnique({
       where: {
         id: req.params.id,
       },
@@ -44,11 +43,13 @@ router.get("/:id", async (req: Request, res: Response) => {
 //LOGIN /users/login
 router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
   try {
-    const user = await prisma.user.findUnique({
+    const user: User | null = await prisma.user.findUnique({
       where: {
         email,
+      },
+      include: {
+        tasks: true,
       },
     });
 
@@ -64,26 +65,28 @@ router.post("/login", async (req: Request, res: Response) => {
 
     res.json({ message: "Login bem-sucedido", userid: user.id });
   } catch (error) {
-    console.error("Erro ao fazer login:", error);
-    res.status(500).json({ error: "Erro ao fazer login" });
+    res.status(500).json({ msg: "Erro ao fazer login" });
   } finally {
     await prisma.$disconnect();
   }
 });
 
-// POST /users
+// POST /users  //todo: implementar a validação de email
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const createdUser = await prisma.user.create({
+    const createdUser: User = await prisma.user.create({
       data: {
         name: req.body.name,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
+        tasks: undefined,
+      },
+      include: {
+        tasks: true,
       },
     });
     res.status(201).json({
       msg: "Usuario criado com sucesso",
-      user: createdUser,
     });
   } catch (err) {
     res.status(500).json({
@@ -93,20 +96,30 @@ router.post("/", async (req: Request, res: Response) => {
   }
 });
 
-// TODO: IMPLEMENTAR PUT E DELETE
+// TODO: IMPLEMENTAR DELETE
 
-// PUT /users/:id
-router.put("/:id", (req: Request, res: Response) => {
-  // Lógica para atualizar um usuário pelo ID
-  const userId = req.params.id;
-  res.send(`Usuário ${userId} atualizado`);
-});
+// PUT NAO FOI NECESSARIO
 
 // DELETE /users/:id
-router.delete("/:id", (req: Request, res: Response) => {
-  // Lógica para excluir um usuário pelo ID
-  const userId = req.params.id;
-  res.send(`Usuário ${userId} excluído`);
+router.delete("/:id", async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.id;
+
+    await prisma.$transaction([
+      prisma.task.deleteMany({
+        where: { userId: userId },
+      }),
+      prisma.user.delete({
+        where: { id: userId },
+      }),
+    ]);
+
+    res.json({ msg: "Usuário e tarefas excluídos com sucesso" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ msg: "Erro ao excluir usuário e tarefas", error: error });
+  }
 });
 
 export default router;
