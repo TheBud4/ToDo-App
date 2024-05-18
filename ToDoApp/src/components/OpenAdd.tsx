@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Plus, X } from "@phosphor-icons/react";
+//import axios from "axios";
 import "../../styles/global.css";
+
 function OpenAdd() {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <div className="mr-10">
@@ -18,10 +21,27 @@ function OpenAdd() {
           <div className="w-96 h-96 bg-zinc-800 flex flex-col p-4">
             <div className="flex flex-row justify-between">
               <h1 className="text-center">Adicionar Tarefa</h1>
-              <button className="bg-zinc-200 ">
-                <X className="text-zinc-900" size={20} />
+              <button onClick={() => setIsOpen(false)}>
+                <X className="text-zinc-100" size={24} />
               </button>
             </div>
+            <form className="flex flex-col gap-4 mt-8">
+              <input
+                className="p-2 border border-gray-300 rounded"
+                placeholder="Título"
+              />
+              <textarea
+                className="text-zinc-800 p-2 border border-gray-300 rounded resize-none"
+                placeholder="Descrição"
+              />
+              <input
+                className="p-2 border border-gray-300 rounded"
+                placeholder="Data"
+              />
+              <button className="bg-emerald-500 py-2 rounded-lg hover:bg-emerald-600">
+                Adicionar
+              </button>
+            </form>
           </div>
         </div>
       ) : null}
