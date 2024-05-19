@@ -8,6 +8,7 @@ import Task from "./Task";
 //   createdAt: new Date(),
 //   dueDate: new Date("2022-12-31"),
 // };
+
 function Tasks(tasks: task[]) {
   return tasks.map((task) => (
     <div className=" mt-12 w-full">
