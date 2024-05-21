@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { Plus, X } from "@phosphor-icons/react";
-//import axios from "axios";
+import axios from "axios";
 import "../../styles/global.css";
+
+const CreateTask = async () => {
+  try {
+    const response = await axios.post("http://localhost:3333/tasks/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    return [];
+  }
+};
 
 function OpenAdd() {
   const [isOpen, setIsOpen] = useState(false);

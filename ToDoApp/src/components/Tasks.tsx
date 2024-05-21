@@ -1,25 +1,41 @@
+import axios from "axios";
 import { Task as task } from "../interfaces/TaskInterface";
 import Task from "./Task";
+import { useEffect, useState } from "react";
 
-// const teste = {
-//   title: "Teste",
-//   description:
-//     "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//   createdAt: new Date(),
-//   dueDate: new Date("2022-12-31"),
-// };
+const fetchTasks = async () => {
+  try {
+    const response = await axios.get("http://localhost:3333/tasks/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    return [];
+  }
+};
 
-function Tasks(tasks: task[]) {
-  return tasks.map((task) => (
+function Tasks() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksData = await fetchTasks();
+      setTasks(tasksData);
+    };
+
+    getTasks();
+  }, []);
+
+  return tasks.map((task: task) => (
     <div className=" mt-12 w-full">
       <Task
-        id="1" // Alterar para o valor correto
+        key={task.id}
+        id={task.id}
         title={task.title}
         description={task.description}
         createdAt={task.createdAt}
         dueDate={task.dueDate}
-        completed={false} // Alterar para o valor correto
-        userId="1" // Alterar para o valor correto
+        completed={task.completed}
+        userId={task.userId}
       />
     </div>
   ));

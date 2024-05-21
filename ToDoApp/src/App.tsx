@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="h-full w-full p-16 flex flex-col">
       <TitleBar />
-      {/* <Tasks /> */}
+      <Tasks />
     </div>
   );
 }
