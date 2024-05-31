@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { User } from "./Interfaces";
+import { randomBytes } from "crypto";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -63,7 +64,10 @@ router.post("/login", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Senha incorreta" });
     }
 
-    res.json({ message: "Login bem-sucedido", userid: user.id });
+    res.json({
+      message: "Login bem-sucedido",
+      userid: user.id,
+    });
   } catch (error) {
     res.status(500).json({ msg: "Erro ao fazer login" });
   } finally {

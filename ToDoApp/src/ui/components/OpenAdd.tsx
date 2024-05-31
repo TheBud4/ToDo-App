@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Plus, X } from "@phosphor-icons/react";
-import axios from "axios";
 import "../styles/global.css";
 import { Task } from "../../data/@types/TaskInterface";
+import api from "../../data/services/ApiConn";
 
 const CreateTask = async (taskData: Task) => {
   try {
-    const response = await axios.post("http://localhost:3333/tasks/", taskData);
+    const response = await api.post("/tasks/", taskData);
     return response.data;
   } catch (error) {
     console.error("Error creating task:", error);
