@@ -1,5 +1,5 @@
 export interface Task {
-  id: string;
+  id: string | null;
   title: string;
   description: string; // Permitir que a descrição seja nula
   completed: boolean;

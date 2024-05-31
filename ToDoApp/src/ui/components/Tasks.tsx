@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Task as task } from "../interfaces/TaskInterface";
+import { Task as task } from "../../data/@types/TaskInterface";
 import Task from "./Task";
 import { useEffect, useState } from "react";
 

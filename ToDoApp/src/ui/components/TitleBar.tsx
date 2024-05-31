@@ -1,5 +1,5 @@
 import OpenAdd from "./OpenAdd";
-import "../../styles/global.css";
+import "../styles/global.css";
 
 function TitleBar() {
   return (

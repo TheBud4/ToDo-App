@@ -1,5 +1,5 @@
 import { PencilSimple, Trash, Check } from "@phosphor-icons/react";
-import { Task as TaskType } from "../interfaces/TaskInterface";
+import { Task as TaskType } from "../../data/@types/TaskInterface";
 
 const Task = ({
   title,

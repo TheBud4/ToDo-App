@@ -1,7 +1,7 @@
-import "../styles/global.css";
+import "./ui/styles/global.css";
 //import SearchBar from "./components/SearchBar";
-import Tasks from "./components/Tasks";
-import TitleBar from "./components/TitleBar";
+import Tasks from "./ui/components/Tasks";
+import TitleBar from "./ui/components/TitleBar";
 
 function App() {
   return (
