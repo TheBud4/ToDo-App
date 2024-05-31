@@ -18,24 +18,34 @@ const Login: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form
+      onSubmit={handleSubmit}
+      className="mt-32 flex flex-col items-center justify-center gap-10"
+    >
+      <div className="flex flex-col gap-2">
         <label>Email:</label>
         <input
+          className="bg-gray-50 w-96 border-gray-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 block  p-2.5 "
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div>
-        <label>Password:</label>
+      <div className="flex flex-col gap-2">
+        <label>Senha:</label>
         <input
+          className="bg-gray-50 w-96 border-gray-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 block  p-2.5 "
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Login</button>
+      <button
+        type="submit"
+        className="bg-zinc-200 text-zinc-700 w-32 font-bold flex justify-center items-center py-2 rounded-lg hover:bg-zinc-100"
+      >
+        Login
+      </button>
     </form>
   );
 };
