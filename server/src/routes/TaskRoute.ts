@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Task } from "./Interfaces";
+import { log } from "console";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -35,6 +36,8 @@ router.get("/:id", async (req: Request, res: Response) => {
 // POST /tasks
 router.post("/", async (req: Request, res: Response) => {
   try {
+    console.log("ID: " + req.body.userId);
+    /*
     const createdTask: Task = await prisma.task.create({
       data: {
         title: req.body.title,
@@ -46,12 +49,16 @@ router.post("/", async (req: Request, res: Response) => {
     });
     res.status(201).json({
       msg: "Tarefa criada com sucesso",
+      task: createdTask,
     });
+    */
   } catch (err) {
     res.status(500).json({
       msg: "Erro ao criar Tarefa",
       error: err,
     });
+    console.log(err);
+    
   }
 });
 

@@ -1,14 +1,16 @@
 import "./ui/styles/global.css";
-//import SearchBar from "./components/SearchBar";
 import Tasks from "./ui/components/Tasks";
 import TitleBar from "./ui/components/TitleBar";
 import { useContext, useState } from "react";
 import UserContext from "./data/contexts/UserContext";
-import Login from "./ui/components/LoginModal";
+import LoginModal from "./ui/components/Login";
+import RegisterModal from "./ui/components/Register";
+  
 
 function App() {
   const userContext = useContext(UserContext);
   const [register, setRegister] = useState(false);
+
   if (!userContext) {
     throw new Error("UserContext must be used within a UserProvider");
   }
@@ -23,11 +25,19 @@ function App() {
   ) : (
     <div className="flex flex-col w-full h-full p-16 justify-center items-center">
       <h1 className="text-4xl text-zinc-100">
-        Faça login ou registre-se para continuar
+        {register ? "Registre-se para continuar" : "Faça login para continuar"}
       </h1>
-      <Login />
+      {register ? <RegisterModal /> : <LoginModal />}
       <div className="mt-10">
-        Ou registre-se <a onClick={() => setRegister(true)}>aqui</a>
+        {register ? (
+          <a onClick={() => setRegister(false)} className="cursor-pointer">
+            Já tem uma conta? Faça login
+          </a>
+        ) : (
+          <a onClick={() => setRegister(true)} className="cursor-pointer">
+            Não tem uma conta? Registre-se
+          </a>
+        )}
       </div>
     </div>
   );

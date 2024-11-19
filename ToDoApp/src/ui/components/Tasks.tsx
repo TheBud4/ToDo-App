@@ -1,11 +1,11 @@
-import axios from "axios";
 import { Task as task } from "../../data/@types/TaskInterface";
 import Task from "./Task";
 import { useEffect, useState } from "react";
+import api from "../../data/services/ApiConn";
 
 const fetchTasks = async () => {
   try {
-    const response = await axios.get("http://localhost:3333/tasks/");
+    const response = await api.get("/tasks/");
     return response.data;
   } catch (error) {
     console.error("Error fetching tasks:", error);
@@ -26,9 +26,8 @@ function Tasks() {
   }, []);
 
   return tasks.map((task: task) => (
-    <div className=" mt-12 w-full">
+    <div className=" mt-12 w-full" key={task.id}>
       <Task
-        key={task.id}
         id={task.id}
         title={task.title}
         description={task.description}
