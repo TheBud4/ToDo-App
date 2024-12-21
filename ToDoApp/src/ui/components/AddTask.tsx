@@ -1,54 +1,36 @@
-import { useContext, useState } from "react";
+import { useState,useContext } from "react";
 import { Plus, X } from "@phosphor-icons/react";
 import "../styles/global.css";
 import { Task } from "../../data/@types/TaskInterface";
-import api from "../../data/services/ApiConn";
-import UserContext from "../../data/contexts/UserContext";
+import { TaskContext } from "../../context/TaskContext";
 
 function AddTask() {
-  const userContext = useContext(UserContext);
+  const taskContext = useContext(TaskContext);
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  if (!userContext) {
-    throw new Error("UserContext must be used within a UserProvider");
-  }
-  const { user } = userContext;
 
-const CreateTask = async (taskData: Task) => {
-  try {
-    const response = await api.post("/tasks/", taskData);
-    console.log("Task created successfully:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error creating task:", error);
-    return null;
-  }
-};
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
 
-
-  const handleSubmit = async () => {
     const newTask: Task = {
-      id: "",
       title,
       description,
       createdAt: new Date(),
       dueDate: new Date(dueDate),
       completed: false,
-      userId: user?.id || "",
-    };    
-    const createdTask = await CreateTask(newTask);
-    
-    if (createdTask) {
-      console.log("Task created successfully:", createdTask);
-      setIsOpen(true); //Mudar para false depois do teste
+    };
+
+    const isCreated = await taskContext?.CreateTask(newTask);
+    console.log(isCreated);
+    if (isCreated) {
+      setIsOpen(false);
       setTitle("");
       setDescription("");
       setDueDate("");
-    } else {
-      console.error("Failed to create task.");
+      taskContext?.FetchTasks();
     }
   };
 
@@ -84,15 +66,13 @@ const CreateTask = async (taskData: Task) => {
                 placeholder="Descrição"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                
               />
               <input
                 type="date"
                 className="p-2 border border-gray-300 rounded text-zinc-800"
-                placeholder="Data"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                
+                required
               />
               <button
                 type="submit"

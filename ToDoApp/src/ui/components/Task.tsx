@@ -1,13 +1,24 @@
+import { useContext } from "react";
 import { PencilSimple, Trash, Check } from "@phosphor-icons/react";
 import { Task as TaskType } from "../../data/@types/TaskInterface";
-
+import { TaskContext } from "../../context/TaskContext";
 const Task = ({
+  id,
   title,
   description,
   createdAt,
   dueDate,
   completed,
 }: TaskType) => {
+  const taskContext  = useContext(TaskContext);
+
+  const handleDelete = () => {
+    if(id){
+    taskContext?.RemoveTask(id);
+    taskContext?.FetchTasks();
+    }
+  };
+
   // Garantir que createdAt e dueDate sejam objetos Date
   const createdAtDate = new Date(createdAt);
   const dueDateDate = new Date(dueDate);
@@ -35,7 +46,7 @@ const Task = ({
         <button className="mr-4">
           <PencilSimple className="text-zinc-100" size={24} />
         </button>
-        <button>
+        <button onClick={handleDelete}>
           <Trash className="text-zinc-100" size={24} />
         </button>
       </div>
