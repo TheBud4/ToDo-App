@@ -9,7 +9,6 @@ function App() {
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Alternar visibilidade do modal
   const toggleEditModal = (isOpen: boolean) => setIsEditModalOpen(isOpen);
 
   return (

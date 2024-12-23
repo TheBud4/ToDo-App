@@ -24,10 +24,17 @@ const Task = ({
     taskContext?.FetchTasks();
     }
   };
+  const handleEditTask = () => {
+    if(id){
+    taskContext?.setTaskId(id);
+    toggleEditModal(true);
+    }
+  }
 
   // Garantir que createdAt e dueDate sejam objetos Date
   const createdAtDate = new Date(createdAt);
   const dueDateDate = new Date(dueDate);
+
   return (
     <div className="flex flex-row justify-between py-8 px-16 border-t w-full h-28 border-zinc-500">
       {completed && (
@@ -48,7 +55,7 @@ const Task = ({
         </div>
       </div>
       <div className="flex">
-        <button className="mr-4" onClick={() => toggleEditModal(true)}>
+        <button className="mr-4" onClick={handleEditTask}>
           <PencilSimple className="text-zinc-100" size={24} />
         </button>
         <button onClick={handleDelete}>

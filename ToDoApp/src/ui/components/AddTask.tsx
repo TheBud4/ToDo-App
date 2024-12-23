@@ -6,6 +6,7 @@ import { TaskContext } from "../../context/TaskContext";
 
 function AddTask() {
   const taskContext = useContext(TaskContext);
+  
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -45,8 +46,8 @@ function AddTask() {
         </button>
       </div>
       {isOpen && (
-        <div className="fixed inset-0 bg-zinc-700 bg-opacity-50 flex justify-center items-center">
-          <div className="w-96 h-96 bg-zinc-800 flex flex-col p-4">
+        <div className="fixed inset-0 bg-zinc-700 bg-opacity-50 flex justify-center items-center ">
+          <div className="w-96 h-96 bg-zinc-800 flex flex-col p-4 rounded-lg">
             <div className="flex flex-row justify-between">
               <h1 className="text-center text-zinc-100">Adicionar Tarefa</h1>
               <button onClick={() => setIsOpen(false)}>

@@ -4,6 +4,8 @@ import api from "../data/services/ApiConn";
 
 interface TaskContextType {
   tasks: Task[];
+  taskId: string;
+  setTaskId: React.Dispatch<React.SetStateAction<string>>;
   CreateTask: (task: Task) => Promise<boolean>;
   FetchTasks: () => Promise<void>;
   UpdateTask: (task: Task) => Promise<void>;
@@ -21,7 +23,7 @@ interface TaskProviderProps {
 
 export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     const [tasks, setTasks] = useState<Task[]>([]);
-
+    const [taskId, setTaskId] = useState("");
   const FetchTasks = async () => {
     try {
       const response = await api.get("/tasks");
@@ -73,6 +75,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     <TaskContext.Provider
       value={{
         tasks,
+        taskId,
+        setTaskId,
         CreateTask,
         FetchTasks,
         UpdateTask,
