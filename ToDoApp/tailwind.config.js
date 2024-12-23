@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        
+        "background-black": "#27272a"
       },
     },
   },

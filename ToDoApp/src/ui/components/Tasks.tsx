@@ -2,7 +2,12 @@ import { useContext, useEffect } from "react";
 import Task from "./Task";
 import { TaskContext } from "../../context/TaskContext";
 
-function Tasks() {
+interface TasksProps {
+  toggleEditModal: (isOpen: boolean) => void;
+}
+
+function Tasks({ toggleEditModal }: TasksProps) {
+
   const taskContext = useContext(TaskContext);
 
   if (!taskContext) {
@@ -20,7 +25,7 @@ function Tasks() {
       {tasks.length > 0 ? (
         tasks.map((task) => (
           <div className="mt-12 w-full" key={task.id}>
-            <Task {...task} />
+            <Task {...task} toggleEditModal={toggleEditModal} />
           </div>
         ))
       ) : (

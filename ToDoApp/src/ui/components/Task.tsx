@@ -2,6 +2,11 @@ import { useContext } from "react";
 import { PencilSimple, Trash, Check } from "@phosphor-icons/react";
 import { Task as TaskType } from "../../data/@types/TaskInterface";
 import { TaskContext } from "../../context/TaskContext";
+
+interface TaskProps extends TaskType {
+  toggleEditModal: (isOpen: boolean) => void;
+}
+
 const Task = ({
   id,
   title,
@@ -9,7 +14,8 @@ const Task = ({
   createdAt,
   dueDate,
   completed,
-}: TaskType) => {
+  toggleEditModal,
+}: TaskProps) => {
   const taskContext  = useContext(TaskContext);
 
   const handleDelete = () => {
@@ -22,7 +28,6 @@ const Task = ({
   // Garantir que createdAt e dueDate sejam objetos Date
   const createdAtDate = new Date(createdAt);
   const dueDateDate = new Date(dueDate);
-
   return (
     <div className="flex flex-row justify-between py-8 px-16 border-t w-full h-28 border-zinc-500">
       {completed && (
@@ -43,7 +48,7 @@ const Task = ({
         </div>
       </div>
       <div className="flex">
-        <button className="mr-4">
+        <button className="mr-4" onClick={() => toggleEditModal(true)}>
           <PencilSimple className="text-zinc-100" size={24} />
         </button>
         <button onClick={handleDelete}>
