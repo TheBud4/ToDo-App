@@ -54,24 +54,26 @@ function EditTask() {
         onSubmit={handleSubmit}
       >
         {/* Título e Data*/}
-        <div
-          className=" flex-2 flex flex-row justify-between items-center"
-          onClick={() => setIsEditingTitle(true)}
-          onBlur={() => setIsEditingTitle(false)}
-        >
-          {isEditingTitle ? (
-            <input
-              type="text"
-              className="w-full bg-transparent border-none focus:outline-none focus:ring-0"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-            />
-          ) : (
-            <h2 className=" text-xl font-semibold">
-              {title || "Clique para adicionar um título"}
-            </h2>
-          )}
+        <div className="relative w-full flex-2 flex flex-row justify-between gap-x-2 items-center">
+          <div
+            className="overflow-x-auto"
+            onClick={() => setIsEditingTitle(true)}
+            onBlur={() => setIsEditingTitle(false)}
+          >
+            {isEditingTitle ? (
+              <input
+                type="text"
+                className="text-xl font-semibold w-full bg-transparent border-none focus:outline-none focus:ring-0"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                autoFocus
+              />
+            ) : (
+              <h2 className="text-xl font-semibold whitespace-nowrap ">
+                {title || "Clique para adicionar um título"}
+              </h2>
+            )}
+          </div>
           <input
             type="date"
             className="p-2 rounded bg-transparent border-none focus:outline-none focus:ring-0 "
@@ -80,7 +82,6 @@ function EditTask() {
             required
           />
         </div>
-
         {/* Descrição */}
         <div
           className="flex-1 h-5/6 overflow-y-auto"
@@ -100,9 +101,7 @@ function EditTask() {
             </p>
           )}
         </div>
-        <div
-            className="flex flex-row justify-end items-center"
-        >
+        <div className="flex flex-row justify-end items-center">
           <button
             type="submit"
             className="flex-2 bg-zinc-200 text-zinc-700 w-32 font-bold flex justify-center items-center py-2 rounded-lg hover:bg-zinc-100"
