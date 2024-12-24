@@ -37,13 +37,13 @@ const Task = ({
 
   return (
     <div className="flex flex-row justify-between py-8 px-16 border-t w-full h-28 border-zinc-500">
+        <div className="h-full w-10 mr-6 flex items-center">
       {completed && (
-        <div className="h-full mr-10 flex items-center">
           <div className="bg-green-500 w-8 h-8 flex items-center justify-center rounded-full">
             <Check className="text-white" weight="bold" size={23} />
           </div>
-        </div>
       )}
+        </div>
       <div className="flex flex-row w-full justify-between">
         <div className="flex flex-col">
           <h1 className="">{title}</h1>
