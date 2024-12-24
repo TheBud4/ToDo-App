@@ -29,7 +29,7 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ isOpen, toggleIsOpen }) =
             <X className="text-white" size={24} />
           </button>
         </div>
-        <EditTask />
+        <EditTask toggleIsOpen={toggleIsOpen}/>
       </div>
     </div>
   );

@@ -2,25 +2,33 @@ import { useState, useEffect, useContext } from "react";
 import { TaskContext } from "../../context/TaskContext";
 import { Task } from "../../data/@types/TaskInterface";
 
-function EditTask() {
+interface EditTaskProps {
+  toggleIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function EditTask({toggleIsOpen}: EditTaskProps) {
   const taskContext = useContext(TaskContext);
 
   const [task, setTask] = useState<Task | null>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [completed, setCompleted] = useState(false); // Estado para a checkbox
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
 
   useEffect(() => {
     const fetchTask = async () => {
-      const taskToEdit = taskContext?.tasks.find((t) => t.id === taskContext?.taskId);
+      const taskToEdit = taskContext?.tasks.find(
+        (t) => t.id === taskContext?.taskId
+      );
       if (taskToEdit) {
         setTask(taskToEdit);
         setTitle(taskToEdit.title);
         setDescription(taskToEdit.description);
         setDueDate(taskToEdit.dueDate.toString().split("T")[0]);
+        setCompleted(taskToEdit.completed); // Carregar o valor da tarefa para a checkbox
       }
     };
 
@@ -36,11 +44,12 @@ function EditTask() {
       title,
       description,
       dueDate: new Date(dueDate),
+      completed, // Incluindo a mudança no valor de completed
     };
 
     await taskContext?.UpdateTask(updatedTask);
     taskContext?.FetchTasks();
-
+    toggleIsOpen(false);
   };
 
   if (!task) {
@@ -53,7 +62,7 @@ function EditTask() {
         className="w-full h-full flex flex-col gap-4"
         onSubmit={handleSubmit}
       >
-        {/* Título e Data*/}
+        {/* Título e Data */}
         <div className="relative w-full flex-2 flex flex-row justify-between gap-x-2 items-center">
           <div
             className="overflow-x-auto"
@@ -101,7 +110,17 @@ function EditTask() {
             </p>
           )}
         </div>
-        <div className="flex flex-row justify-end items-center">
+        {/* Checkbox Concluído */}
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex gap-x-4">
+            <input
+              type="checkbox"
+              className="w-6"
+              checked={completed}
+              onChange={() => setCompleted((prev) => !prev)} 
+            />
+            <label htmlFor="completed">Concluído</label>
+          </div>
           <button
             type="submit"
             className="flex-2 bg-zinc-200 text-zinc-700 w-32 font-bold flex justify-center items-center py-2 rounded-lg hover:bg-zinc-100"
