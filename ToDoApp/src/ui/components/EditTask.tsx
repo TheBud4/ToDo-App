@@ -28,7 +28,7 @@ function EditTask({toggleIsOpen}: EditTaskProps) {
         setTitle(taskToEdit.title);
         setDescription(taskToEdit.description);
         setDueDate(taskToEdit.dueDate.toString().split("T")[0]);
-        setCompleted(taskToEdit.completed); // Carregar o valor da tarefa para a checkbox
+        setCompleted(taskToEdit.completed); 
       }
     };
 
@@ -44,7 +44,7 @@ function EditTask({toggleIsOpen}: EditTaskProps) {
       title,
       description,
       dueDate: new Date(dueDate),
-      completed, // Incluindo a mudança no valor de completed
+      completed, 
     };
 
     await taskContext?.UpdateTask(updatedTask);
