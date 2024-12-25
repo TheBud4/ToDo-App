@@ -24,7 +24,7 @@ function Tasks({ toggleEditModal }: TasksProps) {
     <div className="tasks-container">
       {tasks.length > 0 ? (
         tasks.map((task) => (
-          <div className="mt-12 w-full" key={task.id}>
+          <div className="mt-10 w-full" key={task.id}>
             <Task {...task} toggleEditModal={toggleEditModal} />
           </div>
         ))
