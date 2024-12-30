@@ -53,7 +53,11 @@ const Task = ({
       <div className="flex flex-row items-center justify-betwwen">
         <div className="flex flex-col mr-6">
           <p>Criada: {createdAtDate.toLocaleDateString("pt-BR")}</p>
-          <p>Entrega: {dueDateDate.toLocaleDateString("pt-BR")}</p>
+          {dueDate ? (
+            <p>Entrega: {dueDateDate.toLocaleDateString("pt-BR")}</p>
+          ) : (
+            <p>Entrega: Sem prazo</p>
+          )}
         </div>
         <div>
           <button className="mr-4" onClick={handleEditTask}>

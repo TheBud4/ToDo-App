@@ -6,7 +6,6 @@ import { useState } from "react";
 import EditTaskModal from "./ui/components/EditTaskModal";
 
 function App() {
-  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const toggleEditModal = (isOpen: boolean) => setIsEditModalOpen(isOpen);
