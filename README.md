@@ -1,11 +1,11 @@
 # ToDo-App
 
-![ToDo-App](https://img.shields.io/badge/status-concluído-green) ✅
-![Licença MIT](https://img.shields.io/badge/licença-MIT-blue) 📜
+![ToDo-App](https://img.shields.io/badge/status-concluído-green) 
+![Licença MIT](https://img.shields.io/badge/licença-MIT-blue) 
 
 ## 📝 Descrição
 
-O **ToDo-App** é uma aplicação web desenvolvida com o objetivo de auxiliar no gerenciamento de tarefas diárias. Permite adicionar, editar, remover e marcar tarefas como concluídas, proporcionando uma interface intuitiva para organizar suas atividades. 🗂️
+O **ToDo-App** é uma aplicação web desenvolvida com o objetivo de auxiliar no gerenciamento de tarefas diárias. Permite adicionar, editar, remover e marcar tarefas como concluídas, proporcionando uma interface intuitiva para organizar suas atividades. 
 
 ## ✨ Funcionalidades
 
@@ -18,24 +18,24 @@ O **ToDo-App** é uma aplicação web desenvolvida com o objetivo de auxiliar no
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend**:
-  - [React](https://reactjs.org/) ⚛️
-  - [TypeScript](https://www.typescriptlang.org/) ⌨️
-  - [Tailwind CSS](https://tailwindcss.com/) 🎨
+  - [React](https://reactjs.org/) 
+  - [TypeScript](https://www.typescriptlang.org/) 
+  - [Tailwind CSS](https://tailwindcss.com/)
 
 - **Backend**:
-  - [Node.js](https://nodejs.org/) 🟢
-  - [Express](https://expressjs.com/) 🚀
-  - [SQLite](https://www.sqlite.org/) 🗄️
-  - [Prisma](https://www.prisma.io/) 🌐
+  - [Node.js](https://nodejs.org/) 
+  - [Express](https://expressjs.com/)
+  - [SQLite](https://www.sqlite.org/) 
+  - [Prisma](https://www.prisma.io/)
 
 ## ⚙️ Pré-requisitos
 
 Antes de iniciar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-- [Node.js](https://nodejs.org/) 📦
-- [npm](https://www.npmjs.com/) 📜
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-## 🚀 Instalação
+## Instalação
 
 1. **Clone este repositório**:
 
@@ -77,7 +77,7 @@ Antes de iniciar, certifique-se de ter as seguintes ferramentas instaladas em su
      npx prisma migrate dev
      ```
 
-## ▶️ Uso
+## Uso
 
 1. **Inicie o Backend**:
 
