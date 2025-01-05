@@ -16,8 +16,9 @@ function AddTask({ toggleIsOpen }: AddTaskProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if(dueDate < new Date().toString()){
+    console.log(dueDate);
+    
+    if(dueDate != ""  && dueDate < new Date().toString()){
       alert("A data de entrega não pode ser menor que a data atual");
       return;
     }
